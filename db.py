@@ -4,7 +4,7 @@ def initialize_database():
     conn = sqlite3.connect("theater.db")
     cursor = conn.cursor()
 
-    # Create the roles table first
+    # Create the roles table
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS roles (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,7 +26,7 @@ def initialize_database():
         )
     """)
 
-    # Create the performances table that references roles and actors
+    # Create the performances table
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS performances (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,6 +39,7 @@ def initialize_database():
             FOREIGN KEY (roles_id) REFERENCES roles(id)
         )
     """)
+
 
     conn.commit()
     conn.close()
